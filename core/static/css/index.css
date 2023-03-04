@@ -1,3 +1,28 @@
-* {
-    margin: 8px !important;
+.card {
+    width: 400px;
+
+}
+
+.card img {
+    width: 350px !important;
+    height: 300px !important;
+    object-fit: scale-down;
+}
+ 
+
+ p, a {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif !important;
+}
+
+
+
+
+@media only screen and (max-width: 450px) {
+    .card {
+        max-width: 320px;
+    }
+    .category_container {
+        justify-content: center !important;
+        align-items: center !important;
+    }
 }

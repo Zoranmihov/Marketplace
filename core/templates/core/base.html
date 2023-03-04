@@ -5,18 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {% load static %}
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
+        </style>
+        <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Marketplace</title>
 </head>
 
 <body>
-    <nav>
-        <p>Marketplace</p>
-        <div>
-            <a href="/register">Register</a>
-            <a href="/login">Login</a>
+    <nav class="flex justify-between items-center w-full px-2 bg-amber-200 py-2 align-middle">
+        <p style='font-family: "Dancing Script", cursive; font-size:2rem' class=" font-bold text-2xl">Marketplace</p>
+        <div class='align-middle'>
+            <a class='text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500' href="/register">Register</a>
+            <a class='text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500' href="/login">Login</a>
         </div>
     </nav>
     {% block content %}

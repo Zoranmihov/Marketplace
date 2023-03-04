@@ -1,0 +1,27 @@
+.detail_container {
+    max-height: 100vh;
+    max-width: 98%;
+    min-width: 135px;
+    margin-top: 18px;
+}
+
+.detail_container img {
+   max-width: 780px;
+   max-height: 430px;
+}
+
+.detail_container p {
+    margin-top: 6px;
+}
+
+.card {
+    width: 250px;
+    margin-top: 14px;
+    margin-left: 16px;
+}
+
+@media only screen and (max-width: 450px) {
+    .detail_container img {
+        max-width: 320px;
+     }
+}

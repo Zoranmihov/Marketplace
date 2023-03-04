@@ -1,5 +1,37 @@
-{% extends 'core/base.html' %}
+{% extends 'core/base.html' %} {% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
 
-{% block content %}
-    <h1>Works</h1>
+<div class="bg-slate-700 min-h-screen">
+  <div class="flex flex-wrap justify-around">
+    {% for item in items %}
+    <div
+      class="flex mx-3 my-3 card bg-slate-400 items-center justify-center p-2 hover:bg-slate-300"
+    >
+      <a href="{% url 'item:detail' item.id %}">
+        <div class="flex flex-col items-center justify-center flex-wrap">
+          <img class="image" src="{{item.image.url}}" />
+          <p class="text-xl my-1">{{item.name}}</p>
+          <p class="text-xl my-1">{{item.description |truncatechars:40}}</p>
+          <p class="text-xl my-1">{{item.price}}€</p>
+          <p class="text-xl my-1">Seller: {{item.created_by}}</p>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+  <h3 class="text-5xl text-slate-200 mx-3 my-4">Categories:</h3>
+  <div class='flex flex-wrap category_container'>
+    {% for category in categories %}
+    <a href="#">
+      <div
+        class="flex flex-wrap items-center justify-center rounded-xl w-52 bg-slate-400 hover:bg-slate-300 m-3 p-2"
+      >
+        <h3 class="text-2xl ml-1">{{category.name}}:</h3>
+        <h3 class="text-2xl ml-1">{{category.items.count}}</h3>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
 {% endblock %}

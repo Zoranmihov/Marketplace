@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/detail.css' %}" />
+
+<div class="flex flex-col justify-center items-center bg-slate-500 w-full">
+  <div class="detail_container flex justify-center items-center">
+    <img class="" src="{{item.image.url}}" />
+  </div>
+  <div class="detail_container bg-slate-400 p-3">
+    <p class="text-lg">{{item.description}}</p>
+    <p class="text-lg">Price: {{item.price}}€</p>
+    <p class="text-lg">Seller: {{item.created_by}}</p>
+  </div>
+  <div class="text-center my-4">
+    <a class="text-xl bg-slate-400 hover:bg-slate-300 p-2" href="#"
+      >Contact seller</a
+    >
+  </div>
+</div>
+<h1 class="text-5xl text-slate-200 bg-slate-500 w-full p-3">Similar items:</h1>
+<div class="bg-slate-500 w-full p-3 flex flex-wrap justify-center">
+  {% for item in related %}
+  <a href="{% url 'item:detail' item.id %}">
+    <div
+      class="card bg-slate-400 hover:bg-slate-300 flex flex-col items-center rounded-xl"
+    >
+      <p class="text-xl">{{item.name}}</p>
+      <p class="text-xl">{{item.price}}€</p>
+    </div>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}
