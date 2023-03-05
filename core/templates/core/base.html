@@ -1,28 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap');
-        </style>
-        <script src="https://cdn.tailwindcss.com"></script>
+      @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap");
+    </style>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Marketplace</title>
-</head>
+  </head>
 
-<body>
-    <nav class="flex justify-between items-center w-full px-2 bg-amber-200 py-2 align-middle">
-        <p style='font-family: "Dancing Script", cursive; font-size:2rem' class=" font-bold text-2xl">Marketplace</p>
-        <div class='align-middle'>
-            <a class='text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500' href="/register">Register</a>
-            <a class='text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500' href="/login">Login</a>
+  <body>
+    <nav
+      class="flex justify-between items-center w-full px-2 bg-amber-200 py-2"
+    >
+      <p
+        style="
+          font-family: 'Dancing Script', cursive !important;
+          font-size: 2rem;
+        "
+        class="font-bold text-2xl"
+      >
+        Marketplace
+      </p>
+      <div class="mr-1">
+        {% if request.user.is_authenticated %}
+        <a
+          class="text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500"
+          href="{% url 'messaging:inbox' %}"
+          >Inbox</a
+        >
+        <div class="dropdown">
+          <p
+            id="menu"
+            class="text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500"
+          >
+            Menu
+          </p>
+          <div class="dropdown-content bg-amber-200 rounded-xl">
+            <a
+              class="text-lg p-1 menu_item rounded-md bg-amber-400 hover:bg-amber-500"
+              href="/"
+              >Home</a
+            >
+            <a
+              class="text-lg p-1 menu_item rounded-md bg-amber-400 hover:bg-amber-500"
+              href="{% url 'item:browseItems' %}"
+              >Browse</a
+            >
+            <a
+              class="text-lg menu_item bg-amber-400 hover:bg-amber-500"
+              href="{% url 'item:myItems' %}"
+              >My items</a
+            >
+            <a
+              class="text-lg menu_item bg-amber-400 hover:bg-amber-500"
+              href="{% url 'item:newItem' %}"
+              >Sell</a
+            >
+            <a
+              class="text-lg p-1 menu_item rounded-md bg-amber-400 hover:bg-amber-500"
+              href="{% url 'core:logout' %}"
+              >Logout</a
+            >
+          </div>
         </div>
+        {% else %}
+        <a
+          class="text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500"
+          href="{% url 'core:register' %}"
+          >Register</a
+        >
+        <a
+          class="text-lg p-1 rounded-md bg-amber-400 hover:bg-amber-500"
+          href="{% url 'core:login' %}"
+          >Login</a
+        >
+        {% endif %}
+      </div>
     </nav>
-    {% block content %}
-    {% endblock %}
-</body>
-
+    {% block content %} {% endblock %}
+  </body>
 </html>

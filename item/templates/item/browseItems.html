@@ -1,0 +1,81 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/browseItems.css' %}" />
+
+<div id="container" class="bg-slate-700">
+  <div class="flex items-center justify-center w-full">
+    <form
+      method="get"
+      action="{% url 'item:browseItems' %}"
+      class="my-3 flex"
+      action=""
+    >
+      <input
+        placeholder="Search"
+        type="text"
+        name="query"
+        class="p-1 text-base rounded-xl0"
+        value="{{  query }}"
+      />
+      <button class="text-base bg-slate-300 hover:bg-slate-500 p-1 ml-3">
+        Search
+      </button>
+    </form>
+  </div>
+  <div class="flex items-center justify-center w-full my-5">
+    <a
+      href='{% url "item:browseItems" %}'
+      class="text-base bg-slate-300 hover:bg-slate-500 p-1 ml-3 cursor-pointer"
+    >
+      Clear filters
+    </a>
+  </div>
+  <h1 class="text-5xl text-slate-200 mx-3 my-4 text-center">Categories:</h1>
+  <div class="flex flex-wrap w-full justify-center">
+    {% for category in categories %}
+    <a
+      href="{% url 'item:browseItems' %}?query={{query}}&category={{category.id}}"
+      class=""
+    >
+      <div
+        class="flex flex-wrap items-center justify-center rounded-xl w-52 hover:bg-slate-300 m-3 p-2 {% if category.id == category_id %} bg-lime-500 {% else %} bg-slate-400 {% endif %}"
+      >
+        <h3 class="text-2xl ml-1">{{category.name}}:</h3>
+        <h3 class="text-2xl ml-1">{{category.items.count}}</h3>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  <div class="flex w-full items-center justify-center paginator my-5">
+    {% if items.has_previous %}
+    <a href="?page=1" class="text-xl">&laquo First</a>
+    <a href="?page={{items.previous_page_number}}" class="text-xl">Previous</a>
+    {% endif %}
+    <p class="text-xl">
+      Page {{items.number}} of {{items.paginator.num_pages}}
+    </p>
+    {% if items.has_next %}
+    <a href="?page={{items.next_page_number}}" class="text-xl">Next</a>
+    <a href="?page={{items.paginator.num_pages}}" class="text-xl"
+      >Last &raquo</a
+    >
+    {% endif %}
+  </div>
+  <div class="flex flex-wrap items-center justify-center">
+    {% for item in items %}
+    <div
+      class="flex mx-3 my-3 card bg-slate-400 items-center justify-center p-2 hover:bg-slate-300"
+    >
+      <a href="{% url 'item:detail' item.id %}">
+        <div class="flex flex-col items-center justify-center flex-wrap">
+          <img class="image" src="{{item.image.url}}" />
+          <p class="text-xl my-1">{{item.name}}</p>
+          <p class="text-xl my-1">{{item.description |truncatechars:40}}</p>
+          <p class="text-xl my-1">{{item.price}}</p>
+          <p class="text-xl my-1">{{item.created_by}}</p>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

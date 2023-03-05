@@ -1,0 +1,52 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/editForm.css' %}" />
+
+<div
+  id="container"
+  class="flex flex-wrap flex-col bg-slate-700 items-center justify-center"
+>
+  <form
+    class="bg-slate-400 flex flex-col items-center justify-center p-3"
+    method="post"
+    action="."
+    enctype="multipart/form-data"
+  >
+    {% csrf_token %}
+    <label class='text-lg'>Category</label>
+    {{form.category}}
+    <label class='text-lg'>Name</label>
+    {{form.name}}
+    <label class='text-lg'>Description</label>
+    {{form.description}}
+    <label class='text-lg'>Price</label>
+    {{form.price}}
+    <label class='text-lg'>Chose a photo</label>
+    <button
+      id="upload"
+      type="button"
+      class="text-xl bg-slate-300 hover:bg-slate-500 p-2 my-3"
+    >
+      Upload
+    </button>
+    <button
+      type="submit"
+      class="text-xl bg-slate-300 hover:bg-slate-500 p-2 my-3"
+    >
+      Save edit
+    </button>
+    {% if form.errors or form.non_field_errors %}
+    <div class="text-lg text-red-500">
+      {{form.non_field_errors}}
+    </div>
+    {% endif %}
+  </form>
+</div>
+
+<script>
+  const upload = document.getElementById("upload");
+  upload.addEventListener("click", () => {
+    document.getElementById("id_image").click();
+  });
+</script>
+
+{% endblock %}

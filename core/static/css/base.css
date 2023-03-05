@@ -1,0 +1,33 @@
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    text-align: center;
+    left: -32px;
+    background-color: #f9f9f9;
+    margin: 0 8px;
+    padding: 8px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+    padding-top: 10px;
+  }
+
+  .menu_item {
+    margin: 4px 1px;
+    padding: 4px 8px;
+    display: block;
+  }
+
+  p {
+    word-break: break-all;
+    white-space: normal;
+    hyphens: auto;
+
+}

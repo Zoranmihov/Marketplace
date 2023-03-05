@@ -1,6 +1,10 @@
+#container {
+    min-height: 100vh;
+}
+
 .card {
     width: 400px;
-    height: 480px;
+    height: 500px;
 
 }
 
@@ -9,7 +13,15 @@
     height: 300px !important;
     object-fit: scale-down;
 }
- 
+
+button {
+    width: 100px;
+}
+
+input {
+    padding: 8px;
+}
+
 .paginator a {
     color: rgb(226 232 240) !important;
     margin-left: 12px !important;
@@ -22,15 +34,4 @@
     color: rgb(226 232 240) !important;
     margin-left: 8px !important;
     margin-left: 12px !important;
-}
-
-
-@media only screen and (max-width: 450px) {
-    .card {
-        max-width: 320px;
-    }
-    .category_container {
-        justify-content: center !important;
-        align-items: center !important;
-    }
 }

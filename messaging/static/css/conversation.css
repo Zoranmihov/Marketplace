@@ -1,0 +1,34 @@
+#container {
+    min-height: 100vh;
+    font-size: 1.3rem;
+}
+
+.chat {
+    max-height: 620px;
+    overflow-y: auto;
+}
+
+form {
+    width: 580px;
+}
+
+textarea{
+    margin-top: 6px;
+    width: 500px;
+    resize: none;
+    padding: 8px;
+}
+
+button {
+    width: 100px;
+}
+
+
+@media only screen and (max-width: 450px) {
+    form{
+        width: 300px;
+    }
+    textarea{
+        width: 280px;
+    }
+}

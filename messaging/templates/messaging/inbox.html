@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/inbox.css' %}" />
+<div id="container" class="flex flex-wrap flex-col bg-slate-700">
+  <h1 class="text-3xl text-slate-200 mx-3 mt-3">Inbox:</h1>
+  <div>
+    {% for conversation in conversations %}
+    <a href="{% url 'messaging:detail' conversation.id %}">
+      <div class="flex flex-wrap card bg-slate-500 rounded-xl hover:bg-slate-400">
+        <div class='flex flex-col justify-center mx-4 my-2'>
+          <img src="{{conversation.item.image.url}}" />
+          <p class='text-xl'>{{conversation.item.name}}</p>
+          <p class='text-xl'>{{conversation.item.price}}€</p>  
+        </div>
+        <div>
+          {% for member in conversation.members.all %} 
+          {% if member != request.user %}
+          <p class='text-xl my-2'>
+            User: <strong class='text-2xl'>{{member.username}}</strong>
+          </p>
+          <p>At: {{conversation.modified_at | date:'M d h:m'}}</p>
+          {% endif %} 
+          {% endfor %}
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

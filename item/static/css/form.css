@@ -1,0 +1,24 @@
+#container {
+    min-height: 100vh;
+}
+
+label {
+    margin-top: 8px;
+}
+
+input, select {
+    width: 280px;
+}
+
+form{
+    width: 480px;
+}
+
+textarea{
+    width: 280px;
+    resize: none;
+}
+
+#id_image {
+    display: none;
+}

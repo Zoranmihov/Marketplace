@@ -1,0 +1,31 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+
+<div
+  id="container"
+  class="flex flex-wrap flex-col bg-slate-700 w-full items-center"
+>
+  <h1 class="text-3xl text-slate-200 mx-3 my-4">Login</h1>
+  <form
+    method="post"
+    action="."
+    class="bg-slate-400 flex flex-col items-center justify-center p-4"
+  >
+    {% csrf_token %}
+    <label class="text-lg">Username:</label>
+    {{form.username}}
+    <label class="text-lg">Password:</label>
+    {{form.password}}
+    <button
+      type="submit"
+      class="text-xl bg-slate-300 hover:bg-slate-500 p-2 my-3"
+    >
+      Login
+    </button>
+    <div class="text-lg text-red-500">
+      {% if form.errors or form.non_field_errors %} {{form.non_field_errors}} 
+      {%  endif %}
+    </div>
+  </form>
+</div>
+{% endblock %}
