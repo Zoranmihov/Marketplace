@@ -1,6 +1,6 @@
 ## About:
 
-A simple marketplace app build with Django and Tailwind CSS, which allowes its users to create, edit and delete item listings as well as comunicite wtih eachother over said items.
+A simple marketplace app build with Django and Tailwind CSS, which allows its users to create, edit and delete item listings as well as communicate with each other over said items.
 
 ## How to use:
 
